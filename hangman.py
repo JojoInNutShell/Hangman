@@ -1,3 +1,9 @@
+"""
+Hangman v1.01
+
+Updates in 1.01:
+-Added feature where when user input an empty string,it will be recognize as wrong (Before this version you will get an error if you blank the input when the game asks you to give a letter)
+"""
 from random import randint
 trial = 0
 list_of_word = ["cow","pig","sheep","eagle","scorpion","cat","dog","lizard","snake","tiger","lion","panther","crocodile","spider","elephant","panda","beaver","squirrel","chicken","wolf","buffalo","parrot","dolphin","tortoise","turtle","peacock","catfish","lizard","butterfly","python","anaconda","baboon","monkey","raccoon","dragonfly","penguin","goose","duck","sparrow","kangaroo"]
@@ -93,6 +99,11 @@ def win(trial,string_guess):
 def check_guessing(guess,animal,after_answering,correct):
     global string_guess
     global trial
+    if guess == "":
+        trial += 1
+        correct = False
+        after_answering = True
+        guessing(game_start,correct,string_guess,trial,after_answering)
     guess = guess[0]
     if guess in animal:
         while guess in animal:
